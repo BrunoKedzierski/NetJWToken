@@ -17,6 +17,8 @@ namespace PharmacyWebAPI
        public  DbSet<Medicament> Medicaments { get; set; }
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Prescription> Prescriptions { get; set; }
+
+        public DbSet<User> Users { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
            
@@ -47,7 +49,33 @@ namespace PharmacyWebAPI
 
             });
 
-          
+
+
+            modelBuilder.Entity<User>(d =>
+            {
+
+
+                d.HasData(
+
+                    new User
+                    {
+                        IdUser = 1,
+                        Login = "test",
+                        Password = "testowy",
+                        CreatedOn = DateTime.Now,
+                        Role = "Admin"
+
+
+                    }
+
+
+                    );
+
+
+
+            });
+
+
 
 
 

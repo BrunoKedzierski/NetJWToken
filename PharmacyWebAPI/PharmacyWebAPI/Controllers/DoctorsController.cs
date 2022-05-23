@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PharmacyWebAPI.Models;
 using PharmacyWebAPI.NewFolder;
 
@@ -6,6 +7,7 @@ using PharmacyWebAPI.NewFolder;
 
 namespace PharmacyWebAPI.Controllers
 {
+    
     [Route("api/[controller]")]
     [ApiController]
     public class DoctorsController : ControllerBase
@@ -21,9 +23,11 @@ namespace PharmacyWebAPI.Controllers
             _context = context;
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult GetDoctors()
         {
+
             var doctors = _context.Doctors;
 
             return Ok(doctors);
